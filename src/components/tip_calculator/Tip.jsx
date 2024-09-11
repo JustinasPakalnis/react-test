@@ -1,47 +1,57 @@
-import { useState } from "react";
-import "./Tip.css";
-export function Tip() {
-  const [tipAmount, setTipAmount] = useState("0");
-  const [billPrice, setBillPrice] = useState("0");
-  let tip = 0;
+import React, { useState } from "react";
+import styles from "./Tip.module.css"; // Import the CSS module
 
-  function handleClick() {
-    setBillPrice(billPrice);
-  }
+export function Tip() {
+  const [billPrice, setBillPrice] = useState(0);
+  const [tipPercentage, setTipPercentage] = useState("");
+  const [tipAmount, setTipAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  const handleBillChange = (e) => {
+    setBillPrice(parseFloat(e.target.value) || 0);
+  };
+
+  const handleTipChange = (e) => {
+    setTipPercentage(e.target.value);
+  };
+
+  const calculateTipAndTotal = () => {
+    const percentage = parseFloat(tipPercentage) || 0;
+    const tip = (billPrice * percentage) / 100;
+    const total = billPrice + tip;
+    setTipAmount(tip);
+    setTotalAmount(total);
+  };
 
   return (
-    <>
-      <div className="block">
-        <label>Insert total amount </label>
+    <div className={styles.block}>
+      <label>
+        Insert total amount:
         <input
-          value={billPrice}
-          onChange={(e) => setBillPrice(e.target.value)}
           type="number"
+          min="0"
+          step="0.01"
+          value={billPrice}
+          onChange={handleBillChange}
         />
-        <label>
-          Pick tip amount:
-          <select
-            value={tipAmount}
-            onChange={(e) => setTipAmount(e.target.value)}
-          >
-            <option disabled selected value="">
-              -- Choose an Option --
-            </option>
-            <option value="0">0%</option>
-            <option value="10">10% pretty nice</option>
-            <option value="15">15% my frieeend</option>
-            <option value="25">25% omg</option>
-          </select>
-        </label>
-        <button className="btn" onClick={handleClick}>
-          Calculate TIP
-        </button>
-        <p>Total TIP: {(billPrice * (tipAmount / 100)).toFixed(2)} Eur</p>
-        <p>
-          Total bill:{" "}
-          {(parseInt(billPrice) + billPrice * (tipAmount / 100)).toFixed(2)} Eur
-        </p>
-      </div>
-    </>
+      </label>
+      <label>
+        Pick tip amount:
+        <select value={tipPercentage} onChange={handleTipChange}>
+          <option value="" disabled>
+            -- Choose an Option --
+          </option>
+          <option value="0">0%</option>
+          <option value="10">10% pretty nice</option>
+          <option value="15">15% my friend</option>
+          <option value="25">25% omg</option>
+        </select>
+      </label>
+      <button className={styles.btn} onClick={calculateTipAndTotal}>
+        Calculate TIP
+      </button>
+      <p>Total TIP: {tipAmount.toFixed(2)} Eur</p>
+      <p>Total bill: {totalAmount.toFixed(2)} Eur</p>
+    </div>
   );
 }

@@ -4,7 +4,7 @@ import { Second } from "./components/second_app/Second";
 import { Counter } from "./components/first_app/First";
 import { Footer } from "./components/footer/Footer";
 import { Grocery } from "./components/grocery/Grocery";
-import { Like } from "./components/like/Like";
+
 import { Tip } from "./components/tip_calculator/Tip";
 function App() {
   return (

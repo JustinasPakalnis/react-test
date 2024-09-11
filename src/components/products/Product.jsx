@@ -1,7 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Product.css";
 export function Product({ name, price, amount, updateProductCount }) {
   const [count, setCount] = useState(0);
+
+  // pasileidzia kas kart, kai yra perpiesiamas komponentas
+  // useEffect(() => {
+  //     console.log(11111111111);
+  // });
+
+  // pasileidzia tik pirma karta piesiant komponenta
+  // useEffect(() => {
+  //     console.log(222222222222);
+  // }, []);
+
+  // pasileidzia kai pasikeicia nuroddytu kintamuju reiksmes
+  useEffect(() => {
+    updateProductCount(name, count);
+  }, [count]);
 
   function addOne() {
     if (amount > count) {
@@ -21,9 +36,13 @@ export function Product({ name, price, amount, updateProductCount }) {
       <p>
         {name} (likutis: {amount - count})
       </p>
-      <button onClick={addOne}>+</button>
+      <button className="productBtn" onClick={addOne}>
+        +
+      </button>
       <p>{count}</p>
-      <button onClick={minusOne}>-</button>
+      <button className="productBtn" onClick={minusOne}>
+        -
+      </button>
       <p className="price">{price.toFixed(2)} eur</p>
       <p>{(count * price).toFixed(2)}</p>
     </li>

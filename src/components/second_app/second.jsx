@@ -19,6 +19,7 @@ export function Second() {
         <h1>Hey guys, wanna make some strange text?</h1>
         <label>Insert normal text: </label>
         <input
+          className="input"
           value={strangeText}
           onChange={(e) => setStrangeText(e.target.value)}
           type="string"
