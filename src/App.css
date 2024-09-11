@@ -10,6 +10,12 @@
   margin-bottom: 20px;
 }
 main {
-  min-height: calc(100vh - 2.5rem);
+  /* min-height: calc(100vh - 2.5rem); */
   background-color: rgba(116, 125, 156, 0.281);
+}
+.containerTip {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
 }

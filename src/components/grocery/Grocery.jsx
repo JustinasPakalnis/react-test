@@ -9,19 +9,27 @@ const productList = [
   { key: 27, name: "Bobbish", price: 5, amount: 10210 },
 ];
 const initialProductsState = {};
+
 for (const product of productList) {
   initialProductsState[product.name] = 0;
 }
 
+function updateProductCount(productName, newCount) {
+  console.log(productName, newCount);
+}
 export function Grocery() {
   return (
     <main>
-      <h1>Duhu krautuve</h1>
+      <h1>Suodziu krautuve</h1>
       <ul>
         {productList
           .filter((product) => product.amount > 0)
           .map((product) => (
-            <Product {...product} key={product.key} />
+            <Product
+              {...product}
+              key={product.key}
+              updateProductCount={updateProductCount}
+            />
           ))}
         <p>Total: </p>
       </ul>

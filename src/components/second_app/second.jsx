@@ -1,8 +1,8 @@
-import "./second.css";
+import "./Second.css";
 import { useState } from "react";
 export function Second() {
-  let [age, setAge] = useState("");
-  age = age
+  const [strangeText, setStrangeText] = useState("");
+  const newStrangeText = strangeText
     .split(" ")
     .map((element) =>
       element
@@ -19,11 +19,11 @@ export function Second() {
         <h1>Hey guys, wanna make some strange text?</h1>
         <label>Insert normal text: </label>
         <input
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
+          value={strangeText}
+          onChange={(e) => setStrangeText(e.target.value)}
           type="string"
         />
-        <p>Strange text: {age}</p>
+        <p>Strange text: {newStrangeText}</p>
       </div>
     </>
   );

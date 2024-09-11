@@ -1,6 +1,7 @@
 .block {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 400px;
   padding: 50px;
   background-color: rgb(167, 165, 163);

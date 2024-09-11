@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./first.css";
+import "./First.css";
 export function Counter(props) {
   const [count, setCount] = useState(0);
 
@@ -16,7 +16,6 @@ export function Counter(props) {
   return (
     <div className="block">
       <div>
-        {" "}
         <p className="title">
           {props.name} score: <span className="score">{count}</span> pts
         </p>
